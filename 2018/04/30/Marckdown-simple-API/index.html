@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/6764/b14.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="API," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Castle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Marckdown 语法初体验">
+<meta name="keywords" content="API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Marckdown simple API">
+<meta property="og:url" content="http://yywsy.github.io/2018/04/30/Marckdown-simple-API/index.html">
+<meta property="og:site_name" content="Castle">
+<meta property="og:description" content="Marckdown 语法初体验">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/my_head.jpg">
+<meta property="og:updated_time" content="2018-04-30T06:52:17.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Marckdown simple API">
+<meta name="twitter:description" content="Marckdown 语法初体验">
+<meta name="twitter:image" content="https://www.zybuluo.com/static/img/my_head.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yywsy.github.io/2018/04/30/Marckdown-simple-API/"/>
+
+
+
+
+
+  <title>Marckdown simple API | Castle</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cfca70e7214cee71cf0d0d66707bb13";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Castle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">专注于技术分享~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yywsy.github.io/2018/04/30/Marckdown-simple-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Castle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/98d35d7fcd69.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Castle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Marckdown simple API</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T14:38:54+08:00">
+                2018-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/默认分类/" itemprop="url" rel="index">
+                    <span itemprop="name">默认分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">浏览数</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  Marckdown 语法初体验
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Cmd-Markdown-简明语法手册"><a href="#Cmd-Markdown-简明语法手册" class="headerlink" title="Cmd Markdown 简明语法手册"></a>Cmd Markdown 简明语法手册</h1><p>标签（空格分隔）： 磨刀石</p>
+<hr>
+<h3 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h3><p><em>斜体</em>  </p>
+<p><strong>粗体</strong></p>
+<blockquote>
+<p>注：<span style="color:red">符号后面没有空格</span><br>可任意嵌套html语法标签</p>
+</blockquote>
+<hr>
+<h3 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h3><p>使用 === 表示一级标题 ，使用 —表示二级标题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">这是一个一级标题</span><br><span class="line">===================</span><br><span class="line"></span><br><span class="line">这是一个二级标题</span><br><span class="line">---------------------</span><br><span class="line"></span><br><span class="line">### 是一个三级标题</span><br><span class="line"></span><br><span class="line">&gt;注：也可以在首行加#表示不同级别的标题（H1- H6），例如：# H1，## H2 ，### H3</span><br></pre></td></tr></table></figure>
+<h3 id="3-外链"><a href="#3-外链" class="headerlink" title="3.外链"></a>3.外链</h3><p>使用 [描述]（链接地址）为文字增加外链接。</p>
+<p>示例：</p>
+<p>这是去往 <a href="http://yywsy.github.io">本人博客</a>的链接</p>
+<h3 id="4-无序列表"><a href="#4-无序列表" class="headerlink" title="4.无序列表"></a>4.无序列表</h3><p>使用 * ，+ ，- 表示无需列表</p>
+<p>示例：</p>
+<ul>
+<li>无序列表 一</li>
+<li>无序列表 二</li>
+</ul>
+<ul>
+<li>无序列表 三</li>
+<li>无序列表 四<ul>
+<li>子列表 1</li>
+<li>子列表 2 </li>
+</ul>
+</li>
+<li>无序列表 五<ul>
+<li>子列表<ul>
+<li>子子列表</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-文字引用"><a href="#6-文字引用" class="headerlink" title="6.文字引用"></a>6.文字引用</h3><blockquote>
+<p>野火烧不尽 ， 春风吹又生 。</p>
+</blockquote>
+<h3 id="7-行内代码块"><a href="#7-行内代码块" class="headerlink" title="7.行内代码块"></a>7.行内代码块</h3><p>使用`代码`表示行内代码块。</p>
+<p>示例：<br>让我们聊聊<code>html</code></p>
+<h3 id="8-代码块"><a href="#8-代码块" class="headerlink" title="8.代码块"></a>8.代码块</h3><p>使用四个空格缩进表示代码块<br>示例：</p>
+<pre><code>这是一个代码块，此行有四个不可见的空格。
+var numbers = [] ;
+</code></pre><h3 id="9-插入图像"><a href="#9-插入图像" class="headerlink" title="9.插入图像"></a>9.插入图像</h3><p>使用![描述](图片链接地址)插入图像<br>示例：</p>
+<p><img src="https://www.zybuluo.com/static/img/my_head.jpg" alt="我的头像"></p>
+<hr>
+<h1 id="Cmd-Markdown-高阶语法手册"><a href="#Cmd-Markdown-高阶语法手册" class="headerlink" title="Cmd Markdown 高阶语法手册"></a>Cmd Markdown 高阶语法手册</h1><h3 id="1-内容目录"><a href="#1-内容目录" class="headerlink" title="1. 内容目录"></a>1. 内容目录</h3><p>在段落中写<code>[TOC]</code>以显示全文的内容目录结构。</p>
+<p>[TOC]</p>
+<h3 id="2-标签分类"><a href="#2-标签分类" class="headerlink" title="2.标签分类"></a>2.标签分类</h3><p>在编辑区域任意行的列首输入以下代码给文稿标签：</p>
+<p>标签 : 数学 英语 java </p>
+<p>或者</p>
+<p>Tags : js 语文</p>
+<h3 id="3-删除线"><a href="#3-删除线" class="headerlink" title="3.删除线"></a>3.删除线</h3><p>使用~~ 表示删除线</p>
+<p><del>这是一段错误的文字</del></p>
+<h3 id="3-脚注"><a href="#3-脚注" class="headerlink" title="3.脚注"></a>3.脚注</h3><p>使用[^keyword]表示脚注<br>这是一个脚注<a href="这是一个#脚注#">^footnote</a>的样例<br>这是第二个脚注<a href="这是另一个#脚注#的**文本**">^footnote2</a>的样例</p>
+<h3 id="5-LaTeX-公式"><a href="#5-LaTeX-公式" class="headerlink" title="5.LaTeX 公式"></a>5.LaTeX 公式</h3><p>$ 表示行内公式：</p>
+<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达</p>
+<p>$$ 表示整行公式：</p>
+<p>$$\sum_{i=1}^n a_i=0$$</p>
+<p>$$ f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
+<p>$$\sum^{j-1}<em>{k=0}{\widehat{\gamma}</em>{kj} z_k}$$</p>
+<p>访问<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="noopener">MathJax</a> 参考更多使用方法。</p>
+<h3 id="5-加强的代码块"><a href="#5-加强的代码块" class="headerlink" title="5.加强的代码块"></a>5.加强的代码块</h3><p>支持四十一种编程语言的语法高亮显示，行号显示，</p>
+<p>非代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install vim-gnome</span><br></pre></td></tr></table></figure></p>
+<p>python示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@requires_authorization</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">somefunc</span><span class="params">(param1=<span class="string">''</span>,param2=<span class="number">0</span>)</span>:</span></span><br><span class="line"> <span class="string">'''A docstring'''</span></span><br><span class="line"> <span class="keyword">if</span> param1 &gt; param2 : <span class="comment"># interesting</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Greater'</span></span><br><span class="line"> <span class="keyword">return</span> (parame1 - param2) <span class="keyword">or</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">someClass</span> :</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>message = <span class="string">'''interpreter...prompt'''</span></span><br></pre></td></tr></table></figure></p>
+<p>javascript示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* nth element in the fibonacci *serices.</span></span><br><span class="line"><span class="comment">@param n &gt;= 0</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span> , b = <span class="number">1</span> ;</span><br><span class="line">  <span class="keyword">var</span> tmp ;</span><br><span class="line">  <span class="keyword">while</span> (--n &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">     tmp = a;</span><br><span class="line">     a+=b;</span><br><span class="line">     b=temp;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(fib(<span class="number">10</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-流程图"><a href="#7-流程图" class="headerlink" title="7.流程图"></a>7.流程图</h3><h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start:&gt;https://www.zybuluo.com</span><br><span class="line">io=&gt;inputoutput: verification</span><br><span class="line">op=&gt;operation: Your Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">sub=&gt;subroutine: Your Subroutine</span><br><span class="line">e=&gt;end</span><br><span class="line"></span><br><span class="line">st-&gt;io-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;sub-&gt;io</span><br></pre></td></tr></table></figure>
+<h3 id="更多语法参考：流程图语法参考"><a href="#更多语法参考：流程图语法参考" class="headerlink" title="更多语法参考：流程图语法参考"></a>更多语法参考：<a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="noopener">流程图语法参考</a></h3><h3 id="8-序列图"><a href="#8-序列图" class="headerlink" title="8.序列图"></a>8.序列图</h3><h3 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob ,how are you?</span><br><span class="line">Note right of Bobe: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Title: Here is a title</span><br><span class="line">A-&gt;B: Normal line</span><br><span class="line">B--&gt;C: Dashed line</span><br><span class="line">C-&gt;&gt;D: Open arrow</span><br><span class="line">D--&gt;&gt;A: Dashed open arrow</span><br></pre></td></tr></table></figure>
+<h4 id="更多语法参考：序列图语法参考"><a href="#更多语法参考：序列图语法参考" class="headerlink" title="更多语法参考：序列图语法参考"></a>更多语法参考：<a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="noopener">序列图语法参考</a></h4><h3 id="9-甘特图"><a href="#9-甘特图" class="headerlink" title="9. 甘特图"></a>9. 甘特图</h3><p>甘特图内在思想简单，基本是一条线条图，横轴表示在整个期间上计划和实际的活动完成情况。它直观地标明任务计划在什么时候进行，以及实际进展与计划要求的对比。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">title 项目开发流程</span><br><span class="line">section 项目确定</span><br><span class="line">    需求分析    :a1, 2016-06-22,3d</span><br><span class="line">    可行性报告  :after a1,5d</span><br><span class="line">    概念验证    :5d</span><br><span class="line">section 项目实施</span><br><span class="line">    概要设计:2016-07-05,5d</span><br><span class="line">    详细设计      :2016-07-08, 10d</span><br><span class="line">    编码          :2016-07-15, 10d</span><br><span class="line">    测试          :2016-07-22, 5d</span><br><span class="line">section 发布验收</span><br><span class="line">    发布: 2d</span><br><span class="line">    验收: 3d</span><br></pre></td></tr></table></figure></p>
+<h4 id="更多语法参考：甘特图语法参考"><a href="#更多语法参考：甘特图语法参考" class="headerlink" title="更多语法参考：甘特图语法参考"></a>更多语法参考：<a href="https://knsv.github.io/mermaid/#gant-diagrams" target="_blank" rel="noopener">甘特图语法参考</a></h4><h3 id="10-Mermaid流程图"><a href="#10-Mermaid流程图" class="headerlink" title="10.Mermaid流程图"></a>10.Mermaid流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A[Hard edge] --&gt;|Link text| B(Round edge)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result one]</span><br><span class="line">C --&gt;|Two| E[Result two]</span><br></pre></td></tr></table></figure>
+<h4 id="更多语法参考：Mermaid-流程图语法参考"><a href="#更多语法参考：Mermaid-流程图语法参考" class="headerlink" title="更多语法参考：Mermaid 流程图语法参考"></a>更多语法参考：<a href="https://knsv.github.io/mermaid/#flowcharts-basic-syntax" target="_blank" rel="noopener">Mermaid 流程图语法参考</a></h4><h3 id="11-Mermaid-序列图"><a href="#11-Mermaid-序列图" class="headerlink" title="11. Mermaid 序列图"></a>11. Mermaid 序列图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;John: Hello John, how are you?</span><br><span class="line">loop every minute</span><br><span class="line">    John--&gt;Alice: Great!</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h4 id="更多语法参考：Mermaid-序列图语法参考"><a href="#更多语法参考：Mermaid-序列图语法参考" class="headerlink" title="更多语法参考：Mermaid 序列图语法参考"></a>更多语法参考：<a href="https://knsv.github.io/mermaid/#sequence-diagrams" target="_blank" rel="noopener">Mermaid 序列图语法参考</a></h4><h3 id="12-表格支持"><a href="#12-表格支持" class="headerlink" title="12.表格支持"></a>12.表格支持</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>价格</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td>$1600</td>
+<td>5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td>$12</td>
+<td>12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td>$1</td>
+<td>234</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-自定义型列表"><a href="#13-自定义型列表" class="headerlink" title="13.自定义型列表"></a>13.自定义型列表</h3><p>名词 1<br>：    定义1（左侧有一个可见的冒号和四个不可见的空格）</p>
+<p>代码块 2<br>:    这是代码块的定义（左侧有一个可见的冒号和四个不见客的空格）</p>
+<pre><code>代码块（左侧有八个不见空格）
+</code></pre><h3 id="14-html-标签"><a href="#14-html-标签" class="headerlink" title="14.html 标签"></a>14.html 标签</h3><p>本站支持在Marckdown语法中嵌套html标签，譬如，你可以用html写一个纵横跨两行的表格：</p>
+<table><br><tr><br>            <th rowspan="2">值班人员</th><br>            <th>星期一</th><br>            <th>星期二</th><br>            <th>星期三</th><br>        </tr><br>        <tr><br>            <td>李强</td><br>            <td>张明</td><br>            <td>王平</td><br>        </tr><br></table>
+
+<h3 id="15-内嵌图标"><a href="#15-内嵌图标" class="headerlink" title="15. 内嵌图标"></a>15. 内嵌图标</h3><p>本站的图标系统对外开方，在文档中输入<br>    <i class="icon-weibo"></i><br>即显示微博图标：<i class="icon-weibo  icon-2x"></i><br>上述<code>i 标签</code>内的 <code>icon-weibo</code> 以显示不同的图标，例如：<br>    <i class="icon-renren icon-2x"></i><br>即显示人人图标：<i class="icon-renren icon-2x"></i></p>
+<p>更多的图标和玩法可以参看 <a href="http://fortawesome.github.io/Font-Awesome/3.2.1/icons/" target="_blank" rel="noopener">font-awesome</a> 官方网站。</p>
+<h3 id="16-待办事宜-TODO-列表"><a href="#16-待办事宜-TODO-列表" class="headerlink" title="16.待办事宜 TODO 列表"></a>16.待办事宜 TODO 列表</h3><p>使用带有[]或者[x]<br>(未完成或者已完成)项的列表语法撰写一个待办事宜列表，并且支持自列表嵌套以及混用Markdown语法，例如：</p>
+<pre><code>- [ ] **Cmd Markdown 开发**
+    - [ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率
+    - [ ] 支持以 PDF 格式导出文稿
+    - [x] 新增Todo列表功能 [语法参考](https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments)
+    - [x] 改进 LaTex 功能
+        - [x] 修复 LaTex 公式渲染问题
+        - [x] 新增 LaTex 公式编号功能 [语法参考](http://docs.mathjax.org/en/latest/tex.html#tex-eq-numbers)
+- [ ] **七月旅行准备**
+    - [ ] 准备邮轮上需要携带的物品
+    - [ ] 浏览日本免税店的物品
+    - [x] 购买蓝宝石公主号七月一日的船票
+</code></pre><p>对应显示如下待办事宜 Todo 列表：</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> <strong>Cmd Markdown 开发</strong><ul>
+<li style="list-style: none"><input type="checkbox"> 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li style="list-style: none"><input type="checkbox"> 支持以 PDF 格式导出文稿</li>
+<li style="list-style: none"><input type="checkbox" checked> 新增Todo列表功能 <a href="https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments" target="_blank" rel="noopener">语法参考</a></li>
+</ul>
+</li>
+<li style="list-style: none"><input type="checkbox" checked> 改进 LaTex 功能<ul>
+<li style="list-style: none"><input type="checkbox" checked> 修复 LaTex 公式渲染问题</li>
+<li style="list-style: none"><input type="checkbox" checked> 新增 LaTex 公式编号功能 <a href="http://docs.mathjax.org/en/latest/tex.html#tex-eq-numbers" target="_blank" rel="noopener">语法参考</a><ul>
+<li style="list-style: none"><input type="checkbox"> <strong>七月旅行准备</strong></li>
+<li style="list-style: none"><input type="checkbox"> 准备邮轮上需要携带的物品</li>
+<li style="list-style: none"><input type="checkbox"> 浏览日本免税店的物品</li>
+<li style="list-style: none"><input type="checkbox" checked> 购买蓝宝石公主号七月一日的船票</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/IMG_3234.JPG" alt="Castle wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，轻松畅聊。</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>亲，留下买路财✿</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Castle 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Castle 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/API/" rel="tag"># API</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/29/my-first-blog/" rel="next" title="my-first-blog">
+                <i class="fa fa-chevron-left"></i> my-first-blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/30/mysql触发器/" rel="prev" title="mysql触发器">
+                mysql触发器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/98d35d7fcd69.jpg"
+                alt="Castle" />
+            
+              <p class="site-author-name" itemprop="name">Castle</p>
+              <p class="site-description motion-element" itemprop="description">好看的皮囊千千万，有趣的灵魂只有你！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yywsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:707339@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/2794607680" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/yywsy/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cmd-Markdown-简明语法手册"><span class="nav-number">1.</span> <span class="nav-text">Cmd Markdown 简明语法手册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-斜体和粗体"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.斜体和粗体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分级标题"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.分级标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-外链"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.外链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-无序列表"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-文字引用"><span class="nav-number">1.0.5.</span> <span class="nav-text">6.文字引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-行内代码块"><span class="nav-number">1.0.6.</span> <span class="nav-text">7.行内代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-代码块"><span class="nav-number">1.0.7.</span> <span class="nav-text">8.代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-插入图像"><span class="nav-number">1.0.8.</span> <span class="nav-text">9.插入图像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cmd-Markdown-高阶语法手册"><span class="nav-number">2.</span> <span class="nav-text">Cmd Markdown 高阶语法手册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-内容目录"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 内容目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-标签分类"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.标签分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-删除线"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.删除线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-脚注"><span class="nav-number">2.0.4.</span> <span class="nav-text">3.脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LaTeX-公式"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.LaTeX 公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-加强的代码块"><span class="nav-number">2.0.6.</span> <span class="nav-text">5.加强的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-流程图"><span class="nav-number">2.0.7.</span> <span class="nav-text">7.流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例："><span class="nav-number">2.0.8.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多语法参考：流程图语法参考"><span class="nav-number">2.0.9.</span> <span class="nav-text">更多语法参考：流程图语法参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-序列图"><span class="nav-number">2.0.10.</span> <span class="nav-text">8.序列图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例1："><span class="nav-number">2.0.11.</span> <span class="nav-text">示例1：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-2"><span class="nav-number">2.0.11.1.</span> <span class="nav-text">示例 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多语法参考：序列图语法参考"><span class="nav-number">2.0.11.2.</span> <span class="nav-text">更多语法参考：序列图语法参考</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-甘特图"><span class="nav-number">2.0.12.</span> <span class="nav-text">9. 甘特图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多语法参考：甘特图语法参考"><span class="nav-number">2.0.12.1.</span> <span class="nav-text">更多语法参考：甘特图语法参考</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Mermaid流程图"><span class="nav-number">2.0.13.</span> <span class="nav-text">10.Mermaid流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多语法参考：Mermaid-流程图语法参考"><span class="nav-number">2.0.13.1.</span> <span class="nav-text">更多语法参考：Mermaid 流程图语法参考</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Mermaid-序列图"><span class="nav-number">2.0.14.</span> <span class="nav-text">11. Mermaid 序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多语法参考：Mermaid-序列图语法参考"><span class="nav-number">2.0.14.1.</span> <span class="nav-text">更多语法参考：Mermaid 序列图语法参考</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-表格支持"><span class="nav-number">2.0.15.</span> <span class="nav-text">12.表格支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-自定义型列表"><span class="nav-number">2.0.16.</span> <span class="nav-text">13.自定义型列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-html-标签"><span class="nav-number">2.0.17.</span> <span class="nav-text">14.html 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-内嵌图标"><span class="nav-number">2.0.18.</span> <span class="nav-text">15. 内嵌图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-待办事宜-TODO-列表"><span class="nav-number">2.0.19.</span> <span class="nav-text">16.待办事宜 TODO 列表</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Castle</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://yywsy.github.io/">GitHub Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">阅读数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
