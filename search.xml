@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux 下安装JDK 和 TOMCAT]]></title>
+    <url>%2F2018%2F04%2F30%2FLinux%20%E4%B8%8B%E5%AE%89%E8%A3%85JDK%20%E5%92%8C%20TOMCAT%2F</url>
+    <content type="text"><![CDATA[1准备安装包万恶的Oracle 没办法用wget 下载jdk了，只有yum的openJDK还能下,但是这货是OpenJDK。。。只能自备安装包 JDK: jdk-8u45-linux-x64.tar.gz 下载链接 TOMCAT: apache-tomcat-7.0.86.tar.gz下载连接 2.在、usr/local/下建文件夹java，tomcat7.0123[root@VM_0_15_redhat ~]# cd /usr/local[root@VM_0_15_redhat ~]# mkdir java [root@VM_0_15_redhat ~]# mkdir tomcat7.0 3.把压缩包分别放进服务器对应文件夹去用ssh工具直接拖拽上传更方便 4.解压jdk，tomcat12[root@VM_0_15_redhat ~]# tar -vxzf jdk-8u45-linux-x64.tar.gz[root@VM_0_15_redhat ~]# tar -vxzf apache-tomcat-7.0.86.tar.gz 5.配置Java环境变量（Tomcat可以不配直接用）123456789101112[root@VM_0_15_redhat ~]# vim /etc/profile #使用vim打开配置文件（也可以直接下载到本地修改再传回服务器，替换原文件） #在文件结尾追加环境变量 （vim 使用 i 键进入编辑模式，esc键退出编辑，进入常规模式，dd快速删除一行，：wq保存退出，：q!强制退出不保存） JAVA_HOME=/usr/local/java/jdk1.8.0_45 PATH=$JAVA_HOME/bin:$PATH CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tool.jar export JAVA_HOME export PATH export CLASSPATH #这里其实和windows的环境变量差不多，只不过，path用：分割 保存并退出编辑器，这时候可以选择重启或者使用命令使改动生效。1234[root@VM_0_15_redhat ~]# source /etc/profile# [root@VM_0_15_redhat ~]# . /etc/profile # 注意：这里 . 与 / 之间存在一个空格 #若在当前目录在/etc/，那么可以直接执行./profile，这里 . 与 /没有空格 6.验证Java123[root@VM_0_15_redhat ~]# java -version[root@VM_0_15_redhat ~]# javac -version#正确显示版本号即成功，也可以用vim写个helloWorld来测试一下 过程中遇到的坑： -有的CentOS自带openJDK,要先卸载。 123456[root@VM_0_15_redhat ~]# getconf LONG_BIT #查看当前操作系统位数[root@VM_0_15_redhat ~]# java -version #查看Java版本[root@VM_0_15_redhat ~]# rpm -qa | grep java #列出Java安装路径[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.x86_64[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-headless-1.6.0.0-1.45.1.11.1.el6.x86_64#noarch结尾的文件不用卸 -验证的时候提示权限不够，要重新分配一下。-bash: /usr/local/java/jdk1.8.0_45/bin/java: Permission denied 123[root@VM_0_15_redhat ~]# su root #获取root用户权限[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/java[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/javac -PATH写错了，被追加很多次，需要改参照此篇]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux系统修改PATH环境变量方法]]></title>
+    <url>%2F2018%2F04%2F30%2FLinux%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9PATH%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[1.查看PATH环境变量终端输入echo $PATH返回如下,各路径用:隔开. $符号用于展开变量的值. echo $PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games 2.添加路径到PATH添加路径可以直接给PATH赋值(追加)12export PATH=$PATH:新添加的路径$PATH是当前的路径1:路径2:路径3 ,在后面追加:新添加的路径,然后把这个新的路径集赋值给PATH本身,相当于覆盖了原PATH变量.export命令是导出变量,相当于更新PATH 3.删除PATH中的路径删除PATH中的某个路径也是用以上重新给PATH赋值的方法,比如当前PATH是 echo $PATH 路径1:路径2:路径3:路径4 要删除路径4,只需要copy上面的路径1:路径2:路径3 然后赋值给PATH export PATH=路径1:路径2:路径3 4.在系统文件修改环境变量修改环境变量常用3种方法:123451.直接在命令行输入语句2.在文本文件(常命名为为.sh脚本文件,也可无后缀)中写语句,source这个文件使修改生效3.在系统文件(如HOME下的.bashrc)中写语句,source或重启生效 用命令行修改PATH,只针对当前shell有用,关了终端就失效了 普通文本文件修改PATH每次登陆需要source,常用在安装软件和交叉编译 系统文件中修改相当于每次登陆系统自动source (推荐用root账户修改系统文件,设置root账户的方法) 登陆root,在家目录(root)的.bashrc文件添加新路径到PATH export PATH=$PATH:新增路径 更直接的方法:在.bashrc写明PATH的所有路径,注意先要echo $PATH然后copy系统自带的路径 export PATH=路径1:路径2:路径n 这样增加和删除路径直接改写.bashrc即可 要立即生效只需要source一下.bashrc文件,之后无需再source source .bashrc .bashrc中的修改对于当前账户的每次登陆都有效 要恢复系统默认PATH,删掉.bashrc中的修改语句即可]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql触发器]]></title>
     <url>%2F2018%2F04%2F30%2Fmysql%E8%A7%A6%E5%8F%91%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[mysql 触发器标签（空格分隔）： sql mysql 触发器（不如oracle，少用）12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455delimiter || -- mysql 默认结束符号是分号，当你在写触发器或者存储过程时有分号出现，会中止转而执行 DROP TRIGGERIF EXISTS updateSellState||-- 删除同名的触发器， -- CREATE TRIGGER updateSellState AFTER UPDATE ON tbl_shop_selldetail FOR EACH ROW -- 建立触发器， mysql BUG 触发器不能对当前表操作update会递归CREATE TRIGGER updateSellState BEFORE UPDATE ON tbl_shop_selldetail FOR EACH ROW -- 建立触发器， BEGIN -- 此收费单的商品全部的付款状态都为1 （已付款），则状态未已付款，全部未付款为 0 ，其他为 2 CASEWHEN ( SELECT Count(s.flowNumber) FROM tbl_shop_selldetail AS s WHERE s.flowNumber = old.flowNumber) = ( SELECT Count(ss.flowNumber) FROM tbl_shop_selldetail AS ss WHERE ss.flowNumber = old.flowNumber AND ss.singleFeeState = 1 -- 已付款商品数目) THEN-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 1;-- WHERE sd.flowNumber = old.flowNumber ;WHEN ( SELECT Count(s.flowNumber) FROM tbl_shop_selldetail AS s WHERE s.flowNumber = old.flowNumber) = ( SELECT Count(ss.flowNumber) FROM tbl_shop_selldetail AS ss WHERE ss.flowNumber = old.flowNumber AND ss.singleFeeState = 0 -- 未付款商品统计) THEN-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 0;-- WHERE sd.flowNumber = old.flowNumber ;ELSE-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 2;-- WHERE sd.flowNumber = old.flowNumber ;END CASE;END|| delimiter ;]]></content>
+    <content type="text"><![CDATA[mysql触发器（不如oracle，少用） 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455delimiter || -- mysql 默认结束符号是分号，当你在写触发器或者存储过程时有分号出现，会中止转而执行 DROP TRIGGERIF EXISTS updateSellState||-- 删除同名的触发器， -- CREATE TRIGGER updateSellState AFTER UPDATE ON tbl_shop_selldetail FOR EACH ROW -- 建立触发器， mysql BUG 触发器不能对当前表操作update会递归CREATE TRIGGER updateSellState BEFORE UPDATE ON tbl_shop_selldetail FOR EACH ROW -- 建立触发器， BEGIN -- 此收费单的商品全部的付款状态都为1 （已付款），则状态未已付款，全部未付款为 0 ，其他为 2 CASEWHEN ( SELECT Count(s.flowNumber) FROM tbl_shop_selldetail AS s WHERE s.flowNumber = old.flowNumber) = ( SELECT Count(ss.flowNumber) FROM tbl_shop_selldetail AS ss WHERE ss.flowNumber = old.flowNumber AND ss.singleFeeState = 1 -- 已付款商品数目) THEN-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 1;-- WHERE sd.flowNumber = old.flowNumber ;WHEN ( SELECT Count(s.flowNumber) FROM tbl_shop_selldetail AS s WHERE s.flowNumber = old.flowNumber) = ( SELECT Count(ss.flowNumber) FROM tbl_shop_selldetail AS ss WHERE ss.flowNumber = old.flowNumber AND ss.singleFeeState = 0 -- 未付款商品统计) THEN-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 0;-- WHERE sd.flowNumber = old.flowNumber ;ELSE-- UPDATE tbl_shop_selldetail AS sdSET new.feeState = 2;-- WHERE sd.flowNumber = old.flowNumber ;END CASE;END|| delimiter ;]]></content>
       <categories>
         <category>数据库</category>
       </categories>
