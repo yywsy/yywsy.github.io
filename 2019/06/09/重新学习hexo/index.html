@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Castle">
 <meta property="og:description" content="hexo 个人博客 搭建之后，没有持续 使用导致遗忘干净了，系统重装之后一直也没有再搭建环境，现在使用原来的老环境进行测试">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-08T18:09:33.510Z">
+<meta property="og:updated_time" content="2019-06-08T18:38:37.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 个人博客 学习">
 <meta name="twitter:description" content="hexo 个人博客 搭建之后，没有持续 使用导致遗忘干净了，系统重装之后一直也没有再搭建环境，现在使用原来的老环境进行测试">
@@ -373,7 +373,8 @@
       
 
       
-        <h1 id="使用电脑中旧环境测试"><a href="#使用电脑中旧环境测试" class="headerlink" title="使用电脑中旧环境测试"></a>使用电脑中旧环境测试</h1><p>已经装了 git 和node.js<br>执行 $ hexo g 报错<br> <figure class="highlight plain"><figcaption><span>bash: hexo: command not found```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解决办法：修改环境变量，在Path里添加node_modules下的.bin文件路径</span><br><span class="line">执行 $ hexo -v 检测</span><br></pre></td></tr></table></figure></p>
+        <h1 id="使用电脑中旧环境测试"><a href="#使用电脑中旧环境测试" class="headerlink" title="使用电脑中旧环境测试"></a>使用电脑中旧环境测试</h1><p>已经装了 git 和node.js<br>执行 $ hexo g 报错<br>        $ bash: hexo: command not found </p>
+<p> 解决办法：修改环境变量，在Path里添加node_modules下的.bin文件路径<br> 执行 $ hexo -v 检测</p>
 <pre><code>hexo: 3.7.1
 hexo-cli: 1.1.0
 os: Windows_NT 6.1.7601 win32 x64
@@ -392,7 +393,13 @@ icu: 64.2
 unicode: 12.1
 cldr: 35.1
 tz: 2019a
-</code></pre><p> <code>`</code></p>
+</code></pre><hr>
+<p><strong>hexo创建文章</strong><br>        $ hexo new post “hexo 创建文章”<br>        INFO  Created: E:\IlikeStudy\hexo\source_posts\hexo-创建文章.md </p>
+<blockquote>
+<p>编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，最后输入hexo d上传到github上。</p>
+</blockquote>
+<p><strong>直接在E:\IlikeStudy\hexo\source_posts文件夹下新建.md文件也是可以的，编译并发布到github 命令简写</strong><br>        hexo g d </p>
+<p><strong>注意：每次发布都全部替换</strong></p>
 
       
     </div>
