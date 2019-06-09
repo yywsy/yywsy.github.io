@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[hexo 个人博客 学习]]></title>
     <url>%2F2019%2F06%2F09%2F%E9%87%8D%E6%96%B0%E5%AD%A6%E4%B9%A0hexo%2F</url>
-    <content type="text"><![CDATA[使用电脑中旧环境测试已经装了 git 和node.js执行 $ hexo g 报错 $ bash: hexo: command not found 解决办法：修改环境变量，在Path里添加node_modules下的.bin文件路径 执行 $ hexo -v 检测 hexo: 3.7.1 hexo-cli: 1.1.0 os: Windows_NT 6.1.7601 win32 x64 http_parser: 2.8.0 node: 10.16.0 v8: 6.8.275.32-node.52 uv: 1.28.0 zlib: 1.2.11 brotli: 1.0.7 ares: 1.15.0 modules: 64 nghttp2: 1.34.0 napi: 4 openssl: 1.1.1b icu: 64.2 unicode: 12.1 cldr: 35.1 tz: 2019a hexo创建文章 $ hexo new post “hexo 创建文章” INFO Created: E:\IlikeStudy\hexo\source_posts\hexo-创建文章.md 编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，最后输入hexo d上传到github上。 直接在E:\IlikeStudy\hexo\source_posts文件夹下新建.md文件也是可以的，编译并发布到github 命令简写 hexo g d 注意：每次发布都全部替换]]></content>
+    <content type="text"><![CDATA[检查hexo环境是否可用 必要前提已经装了 git 和node.js 检测版本 $ hexo -v hexo: 3.7.1 hexo-cli: 1.1.0 os: Windows_NT 6.1.7601 win32 x64 http_parser: 2.8.0 node: 10.16.0 v8: 6.8.275.32-node.52 uv: 1.28.0 zlib: 1.2.11 brotli: 1.0.7 ares: 1.15.0 modules: 64 nghttp2: 1.34.0 napi: 4 openssl: 1.1.1b icu: 64.2 unicode: 12.1 cldr: 35.1 tz: 2019a 执行 $ hexo g 报错 $ bash: hexo: command not found 解决办法：修改环境变量，在Path里添加node_modules下的.bin文件路径 写博客 hexo创建文章$ hexo new post &quot;hexo 创建文章&quot; INFO Created: E:\IlikeStudy\hexo\source\_posts\hexo-创建文章.md 编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，最后输入hexo d上传到github上。 直接在E:\IlikeStudy\hexo\source_posts文件夹下新建.md文件也是可以的，编译并发布到github 命令简写hexo g d 注意：每次发布都全部替换 博客目录构成介绍 node_modules是node.js各种库的目录，public是生成的网页文件目录，scaffolds里面就三个文件，存储着新文章和新页面的初始设置，source是我们最常用到的一个目录，里面存放着文章、各类页面、图像等文件，themes存放着主题文件，一般也用不到。平时写文章只需要关注source/_posts这个文件夹就行了。]]></content>
       <categories>
         <category>默认分类</category>
       </categories>
@@ -15,6 +15,17 @@
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F11%2F19%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 下安装JDK 和 TOMCAT]]></title>
+    <url>%2F2018%2F04%2F30%2FLinux%20%E4%B8%8B%E5%AE%89%E8%A3%85JDK%20%E5%92%8C%20TOMCAT%2F</url>
+    <content type="text"><![CDATA[1准备安装包万恶的Oracle 没办法用wget 下载jdk了，只有yum的openJDK还能下,但是这货是OpenJDK。。。只能自备安装包 JDK: jdk-8u45-linux-x64.tar.gz 下载链接 TOMCAT: apache-tomcat-7.0.86.tar.gz下载连接 2.在、usr/local/下建文件夹java，tomcat7.0123[root@VM_0_15_redhat ~]# cd /usr/local[root@VM_0_15_redhat ~]# mkdir java [root@VM_0_15_redhat ~]# mkdir tomcat7.0 3.把压缩包分别放进服务器对应文件夹去用ssh工具直接拖拽上传更方便 4.解压jdk，tomcat12[root@VM_0_15_redhat ~]# tar -vxzf jdk-8u45-linux-x64.tar.gz[root@VM_0_15_redhat ~]# tar -vxzf apache-tomcat-7.0.86.tar.gz 5.配置Java环境变量（Tomcat可以不配直接用）123456789101112[root@VM_0_15_redhat ~]# vim /etc/profile #使用vim打开配置文件（也可以直接下载到本地修改再传回服务器，替换原文件） #在文件结尾追加环境变量 （vim 使用 i 键进入编辑模式，esc键退出编辑，进入常规模式，dd快速删除一行，：wq保存退出，：q!强制退出不保存） JAVA_HOME=/usr/local/java/jdk1.8.0_45 PATH=$JAVA_HOME/bin:$PATH CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tool.jar export JAVA_HOME export PATH export CLASSPATH #这里其实和windows的环境变量差不多，只不过，path用：分割 保存并退出编辑器，这时候可以选择重启或者使用命令使改动生效。1234[root@VM_0_15_redhat ~]# source /etc/profile# [root@VM_0_15_redhat ~]# . /etc/profile # 注意：这里 . 与 / 之间存在一个空格 #若在当前目录在/etc/，那么可以直接执行./profile，这里 . 与 /没有空格 6.验证Java123[root@VM_0_15_redhat ~]# java -version[root@VM_0_15_redhat ~]# javac -version#正确显示版本号即成功，也可以用vim写个helloWorld来测试一下 过程中遇到的坑： -有的CentOS自带openJDK,要先卸载。 123456[root@VM_0_15_redhat ~]# getconf LONG_BIT #查看当前操作系统位数[root@VM_0_15_redhat ~]# java -version #查看Java版本[root@VM_0_15_redhat ~]# rpm -qa | grep java #列出Java安装路径[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.x86_64[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-headless-1.6.0.0-1.45.1.11.1.el6.x86_64#noarch结尾的文件不用卸 -验证的时候提示权限不够，要重新分配一下。-bash: /usr/local/java/jdk1.8.0_45/bin/java: Permission denied 123[root@VM_0_15_redhat ~]# su root #获取root用户权限[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/java[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/javac -PATH写错了，被追加很多次，需要改参照此篇]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Linux系统修改PATH环境变量方法]]></title>
@@ -36,17 +47,6 @@
       </categories>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux 下安装JDK 和 TOMCAT]]></title>
-    <url>%2F2018%2F04%2F30%2FLinux%20%E4%B8%8B%E5%AE%89%E8%A3%85JDK%20%E5%92%8C%20TOMCAT%2F</url>
-    <content type="text"><![CDATA[1准备安装包万恶的Oracle 没办法用wget 下载jdk了，只有yum的openJDK还能下,但是这货是OpenJDK。。。只能自备安装包 JDK: jdk-8u45-linux-x64.tar.gz 下载链接 TOMCAT: apache-tomcat-7.0.86.tar.gz下载连接 2.在、usr/local/下建文件夹java，tomcat7.0123[root@VM_0_15_redhat ~]# cd /usr/local[root@VM_0_15_redhat ~]# mkdir java [root@VM_0_15_redhat ~]# mkdir tomcat7.0 3.把压缩包分别放进服务器对应文件夹去用ssh工具直接拖拽上传更方便 4.解压jdk，tomcat12[root@VM_0_15_redhat ~]# tar -vxzf jdk-8u45-linux-x64.tar.gz[root@VM_0_15_redhat ~]# tar -vxzf apache-tomcat-7.0.86.tar.gz 5.配置Java环境变量（Tomcat可以不配直接用）123456789101112[root@VM_0_15_redhat ~]# vim /etc/profile #使用vim打开配置文件（也可以直接下载到本地修改再传回服务器，替换原文件） #在文件结尾追加环境变量 （vim 使用 i 键进入编辑模式，esc键退出编辑，进入常规模式，dd快速删除一行，：wq保存退出，：q!强制退出不保存） JAVA_HOME=/usr/local/java/jdk1.8.0_45 PATH=$JAVA_HOME/bin:$PATH CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tool.jar export JAVA_HOME export PATH export CLASSPATH #这里其实和windows的环境变量差不多，只不过，path用：分割 保存并退出编辑器，这时候可以选择重启或者使用命令使改动生效。1234[root@VM_0_15_redhat ~]# source /etc/profile# [root@VM_0_15_redhat ~]# . /etc/profile # 注意：这里 . 与 / 之间存在一个空格 #若在当前目录在/etc/，那么可以直接执行./profile，这里 . 与 /没有空格 6.验证Java123[root@VM_0_15_redhat ~]# java -version[root@VM_0_15_redhat ~]# javac -version#正确显示版本号即成功，也可以用vim写个helloWorld来测试一下 过程中遇到的坑： -有的CentOS自带openJDK,要先卸载。 123456[root@VM_0_15_redhat ~]# getconf LONG_BIT #查看当前操作系统位数[root@VM_0_15_redhat ~]# java -version #查看Java版本[root@VM_0_15_redhat ~]# rpm -qa | grep java #列出Java安装路径[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.x86_64[root@VM_0_15_redhat ~]# rpm -e –-nodeps java-1.6.0-openjdk-headless-1.6.0.0-1.45.1.11.1.el6.x86_64#noarch结尾的文件不用卸 -验证的时候提示权限不够，要重新分配一下。-bash: /usr/local/java/jdk1.8.0_45/bin/java: Permission denied 123[root@VM_0_15_redhat ~]# su root #获取root用户权限[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/java[root@VM_0_15_redhat java]# chmod 770 jdk1.7.0_80/bin/javac -PATH写错了，被追加很多次，需要改参照此篇]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
